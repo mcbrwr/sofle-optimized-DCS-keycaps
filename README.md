@@ -1,4 +1,4 @@
-# Custom keycaps
+# OpenSCAD Sofle split keyboard keycaps
 
 ![The full Sofle set](images/sofle-set.png)
 
