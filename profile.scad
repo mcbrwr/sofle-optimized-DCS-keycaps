@@ -1,38 +1,38 @@
-// Eigen keycap-profiel, gebaseerd op DCS.
-// Gedeeld door key.scad (losse toets) en de layouts in layouts/.
+// Custom keycap profile, based on DCS.
+// Shared by key.scad (single key) and the layouts in layouts/.
 
 include <./includes.scad>
 
-// --- profiel per rij 0–4 (rij 4 = duimtoetsen) ---
-heights   = [12,   8,    6,    6.5,  6];    // origineel DCS: 11.5, 8.5, 7.5, 6, 6
-tilts     = [-14,  -10,  -3,   7,    -11];  // origineel DCS: -6, -1, 3, 7, 16
-skews     = [1.75, 1.75, 1.75, 1.75, 0.8];  // origineel DCS: 1.75
+// --- profile per row 0–4 (row 4 = thumb keys) ---
+heights   = [12,   8,    6,    6.5,  6];    // original DCS: 11.5, 8.5, 7.5, 6, 6
+tilts     = [-14,  -10,  -3,   7,    -11];  // original DCS: -6, -1, 3, 7, 16
+skews     = [1.75, 1.75, 1.75, 1.75, 0.8];  // original DCS: 1.75
 fontSizes = [6,    6,    6,    6,    3];
 
-// --- afgeschuinde bovenrand ---
-top_bevel       = 1;  // breedte van de afschuining in mm (0 = scherpe rand)
-top_bevel_steps = 1;  // 1 = rechte afschuining, 4+ = afgeronde rand
+// --- bevelled top edge ---
+top_bevel       = 1;  // width of the bevel in mm (0 = sharp edge)
+top_bevel_steps = 1;  // 1 = straight chamfer, 4+ = rounded edge
 
 // --- homing bumps ---
 home_keys  = ["F", "J"];
-bump_depth = 0.5;    // hoogte van het randje
-bump_edge  = 1.5;    // afstand vanaf de voorrand in mm
+bump_depth = 0.5;    // height of the bump
+bump_edge  = 1.5;    // distance from the front edge in mm
 
-// --- print-instellingen ---
+// --- print settings ---
 stem_slop = 0.45;
 
-// tekst met meerdere tekens krimpt tot max. ±10 mm breed (±1,1 mm per teken per eenheid font size)
+// multi-character legends shrink to at most ~10 mm wide (~1.1 mm per character per unit of font size)
 function legend_size(t, row) =
   len(t) <= 1 ? fontSizes[row] : min(fontSizes[row], 10 / (1.1 * len(t)));
 
 function is_home(t) = len([for (h = home_keys) if (h == t) h]) > 0;
 
-// t: legenda ("" = leeg kapje), row: profielrij 0–4
-// length: lengte in units (verticaal), roll: kanteling opzij in graden
-// bump: homing bump, standaard voor de toetsen in home_keys
+// t: legend ("" = blank keycap), row: profile row 0–4
+// length: length in units (vertical), roll: sideways tilt in degrees
+// bump: homing bump, defaults to on for the keys in home_keys
 module custom_key(t, row, length = 1, roll = 0, bump = undef) {
   let(
-    // basismaten van DCS
+    // base dimensions from DCS
     $bottom_key_width   = 18.16,
     $bottom_key_height  = 18.16,
     $width_difference   = 6,
@@ -44,7 +44,7 @@ module custom_key(t, row, length = 1, roll = 0, bump = undef) {
 
     $stem_slop          = stem_slop,
     $stem_support_type  = "disable",
-    // bij kantelen opzij komt de lage kant omlaag; compenseer de hoogte
+    // tilting sideways lowers one side; compensate the height
     $total_depth        = heights[row] + 6 * sin(abs(roll)),
     $top_tilt           = tilts[row],
     $top_skew           = skews[row],

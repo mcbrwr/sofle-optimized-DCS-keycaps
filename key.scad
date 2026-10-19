@@ -1,13 +1,13 @@
-// Eén losse toets. Handig om profiel en instellingen te testen of een
-// reservekapje te printen. Profiel en algemene instellingen: profile.scad
+// A single key. Useful for testing the profile and settings, or for printing
+// a spare keycap. Profile and general settings: profile.scad
 
 include <./profile.scad>
 
 legend_text = "F";
 row         = 2;    // [0:4]
-length      = 1;    // lengte in units, bv. 1.5 voor de Sofle-duimtoets
-roll        = 0;    // kanteling opzij in graden
-bump        = "auto"; // ["auto", "on", "off"] auto = alleen voor home_keys
+length      = 1;    // length in units, e.g. 1.5 for the Sofle thumb key
+roll        = 0;    // sideways tilt in degrees
+bump        = "auto"; // ["auto", "on", "off"] auto = only for home_keys
 
 custom_key(legend_text, row, length, roll,
            bump == "auto" ? undef : bump == "on");

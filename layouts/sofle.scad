@@ -1,12 +1,12 @@
-// Volledige Sofle-keyset. Profiel en algemene instellingen: ../profile.scad
+// Full Sofle keyset. Profile and general settings: ../profile.scad
 
 include <../profile.scad>
 
-// --- losse duimtoetsen (BKS links, ENT rechts) ---
-thumb_length = 1.5;  // lengte in units (verticaal)
-thumb_roll   = 10;   // kanteling naar buiten in graden (0 = vlak)
+// --- separate thumb keys (BKS left, ENT right) ---
+thumb_length = 1.5;  // length in units (vertical)
+thumb_roll   = 10;   // outward tilt in degrees (0 = flat)
 
-// --- legenda's ("" = leeg kapje) ---
+// --- legends ("" = blank keycap) ---
 left = [
   ["ESC", "1!",  "2@",  "3#",  "4$",  "5%"],
   ["TAB", "Q",   "W",   "E",   "R",   "T"],
@@ -22,12 +22,12 @@ right = [
   ["ENT", "SPC", "GUI", "ALT", "CTL"]
 ];
 
-// "left", "right" of "both"
+// "left", "right" or "both"
 half = "both";
 
-// offsets: verschuiving per rij in units (zodat de kolommen kloppen)
-// big_col: kolom in de duimrij van de losse duimtoets
-// roll: positief = linkerkant omlaag, negatief = rechterkant omlaag
+// offsets: shift per row in units (so the columns line up)
+// big_col: column of the separate thumb key in the thumb row
+// roll: positive = left side down, negative = right side down
 module sofle_half(legends, x0, offsets, big_col, roll) {
   for (r = [0:4], c = [0:len(legends[r]) - 1]) {
     big = r == 4 && c == big_col;
@@ -37,6 +37,6 @@ module sofle_half(legends, x0, offsets, big_col, roll) {
   }
 }
 
-// losse duimtoetsen kantelen naar de buitenkant van het toetsenbord
+// the separate thumb keys tilt towards the outside of the keyboard
 if (half != "right") sofle_half(left,  -2, [-1, -1, -1, -1,  1], 4,  thumb_roll);
 if (half != "left")  sofle_half(right,  7, [-1, -1, -1, -2, -2], 0, -thumb_roll);
