@@ -29,7 +29,7 @@ module tines_support(stem_type, stem_support_height, slop) {
           translate([0,0,$stem_support_height / 2]) {
             cube([
               total_key_width()*2,
-              0.5,
+              $stem_support_tine_width,
               $stem_support_height
             ], center = true);
           }
@@ -39,7 +39,7 @@ module tines_support(stem_type, stem_support_height, slop) {
         for (x = [2, -2]) {
           translate([x,0,$stem_support_height / 2]) {
             cube([
-              0.5,
+              $stem_support_tine_width,
               total_key_height()*2, // this is to extend past
               $stem_support_height
             ], center = true);

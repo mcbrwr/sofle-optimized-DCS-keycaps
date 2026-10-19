@@ -11,7 +11,7 @@ fontSizes = [6,    6,    6,    6,    3];
 
 // --- bevelled top edge ---
 top_bevel       = 1;  // width of the bevel in mm (0 = sharp edge)
-top_bevel_steps = 1;  // 1 = straight chamfer, 4+ = rounded edge
+top_bevel_steps = 5;  // 1 = straight chamfer, 4+ = rounded edge
 
 // --- homing bumps ---
 home_keys  = ["F", "J"];
@@ -20,6 +20,12 @@ bump_edge  = 1.5;    // distance from the front edge in mm
 
 // --- print settings ---
 stem_slop = 0.45;
+
+// thin lines on the first layer from the stem to the walls, to hold the stem
+// in place while printing. snip them off afterwards
+stem_tines       = true;
+stem_tine_width  = 0.4;  // in mm. below the nozzle width some slicers drop them
+stem_tine_height = 0.2;  // in mm. match your first layer height
 
 // multi-character legends shrink to at most ~10 mm wide (~1.1 mm per character per unit of font size)
 function legend_size(t, row) =
@@ -43,7 +49,9 @@ module custom_key(t, row, length = 1, roll = 0, bump = undef) {
     $dish_skew_y        = 0,
 
     $stem_slop          = stem_slop,
-    $stem_support_type  = "disable",
+    $stem_support_type  = stem_tines ? "tines" : "disable",
+    $stem_support_height     = stem_tine_height,
+    $stem_support_tine_width = stem_tine_width,
     // tilting sideways lowers one side; compensate the height
     $total_depth        = heights[row] + 6 * sin(abs(roll)),
     $top_tilt           = tilts[row],

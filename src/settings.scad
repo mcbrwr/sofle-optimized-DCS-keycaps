@@ -120,6 +120,8 @@ $cherry_bevel = true;
 
 // How tall in mm the stem support is, if there is any. stem support sits around the keystem and helps to secure it while printing.
 $stem_support_height = .8;
+// Width of the lines for the "tines" stem support (cherry stems)
+$stem_support_tine_width = 0.5;
 // Font used for text
 $font="DejaVu Sans Mono:style=Book";
 // Whether or not to render fake keyswitches to check clearances
