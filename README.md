@@ -1,5 +1,7 @@
 # Custom keycaps
 
+![The full Sofle set](images/sofle-set.png)
+
 OpenSCAD model for a custom keycap profile, with a complete set for the
 Sofle split keyboard. This project is a modification of
 [KeyV2](https://github.com/rsheldiii/KeyV2).
@@ -38,8 +40,9 @@ and `half` to render only the left half, only the right half, or both.
 
 ### `images/`
 
-`profile-side.scad` renders the side view above. The command to regenerate
-it is at the top of the file.
+`sofle-set.scad` renders the image of the full set at the top, and
+`profile-side.scad` the side view of the rows. The command to regenerate each
+image is at the top of its file.
 
 ### `src/`: the underlying code
 

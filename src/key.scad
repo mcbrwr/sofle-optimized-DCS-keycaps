@@ -171,7 +171,7 @@ module inner_shape(extra_wall_thickness = 0, extra_keytop_thickness = 0) {
 // additive objects at the top of the key
 module additive_features(inset) {
   top_of_key() {
-    if($key_bump) keybump($key_bump_depth, $key_bump_edge);
+    if($key_bump) color($primary_color) keybump($key_bump_depth, $key_bump_edge);
     if(!inset && $children > 0) color($secondary_color) children();
   }
   if($outset_legends) legends(0);
