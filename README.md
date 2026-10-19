@@ -7,6 +7,8 @@ Sofle split keyboard. This project is a modification of
 The keycap profile is a modification of DCS by Signature Plastics. The main
 changes are the row heights and angles, and the bevelled top edges.
 
+![Side view of the rows](images/profile-side.png)
+
 ## Files
 
 ### `profile.scad`: the profile and shared settings
@@ -33,6 +35,11 @@ homing bump.
 
 The legends for both halves, the size and tilt of the separate thumb keys,
 and `half` to render only the left half, only the right half, or both.
+
+### `images/`
+
+`profile-side.scad` renders the side view above. The command to regenerate
+it is at the top of the file.
 
 ### `src/`: the underlying code
 
